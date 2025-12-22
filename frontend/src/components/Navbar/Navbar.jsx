@@ -38,11 +38,17 @@ function Navbar() {
 
   // পেজ রিফ্রেশ বা ডাইরেক্ট লিংকে হ্যান্ডেল করার লজিক
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
     const pathId = location.pathname === '/' ? 'home' : location.pathname.replace('/', '');
     setTimeout(() => {
       const element = document.getElementById(pathId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // যদি এলিমেন্ট না পায় (যেমন হোম পেজে), তবে টপে স্ক্রল করবে
+        window.scrollTo(0, 0);
       }
     }, 100);
   }, []);
