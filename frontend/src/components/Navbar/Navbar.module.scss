@@ -1,0 +1,262 @@
+// Variables
+$primary-color: #2563eb; // Blue-600
+$text-dark: #1f2937;
+$text-light: #3c4552;
+$bg-glass: rgba(255, 255, 255, 0.75);
+$shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent; // শুরুতে ট্রান্সপারেন্ট
+
+  // Scrolled State (Professional Glass Effect)
+  &.scrolled {
+    height: 70px; // স্ক্রল করলে একটু ছোট হবে
+    background: $bg-glass;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: $shadow-sm;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo Styles */
+.logo {
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: $text-dark;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+
+  .dot {
+    color: $primary-color;
+    font-size: 2.5rem;
+    line-height: 0;
+    margin-bottom: 8px;
+    margin-left: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .dot {
+    transform: translateY(-5px); // ডট লাফাবে
+  }
+}
+
+/* Desktop Menu Wrapper */
+.desktopMenu {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+/* Navigation Links */
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $text-light;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    // Modern Center-Out Underline
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: $primary-color;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+/* CTA Button (Let's Talk) */
+.ctaBtn {
+  background: $text-dark;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+
+  &:hover {
+    background: $primary-color;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
+  }
+}
+
+/* Mobile Menu Button */
+.mobileMenuBtn {
+  display: block;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $text-dark;
+  padding: 0.5rem;
+  transition: color 0.3s;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+/* ----------------------------- */
+/* MOBILE DRAWER STYLES */
+/* ----------------------------- */
+
+/* Backdrop Overlay */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 101;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Drawer */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 102;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); // Smooth Apple-like ease
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #f3f4f6;
+
+  .drawerLogo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: $text-dark;
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $text-light;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #ef4444; // Red on hover close
+    }
+  }
+}
+
+.drawerLinks {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text-dark;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+
+    &:hover {
+      color: $primary-color;
+      padding-left: 5px; // Slight shift right on hover
+    }
+  }
+}
+
+.mobileCtaBtn {
+  margin-top: 1rem;
+  background: $primary-color;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+}

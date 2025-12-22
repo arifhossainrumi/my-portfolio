@@ -1,0 +1,310 @@
+.heroSection {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff; // Dark Background like the image
+  padding-top: 50px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column; // কলাম হয়ে যাবে
+    min-height: auto;
+    padding-top: 40px;
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 40px; // মোবাইলে স্পেস কম লাগবে
+    min-height: auto; // মোবাইলে 100vh অনেক সময় সমস্যা করে (Scroll ইস্যু), তাই auto ভালো
+    padding-bottom: 30px; // নিচে একটু সেফটি স্পেস
+  }
+}
+
+// টেক্সটের স্টাইল
+.greeting {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #df4545;
+  margin-bottom: 0.5rem;
+  display: block;
+
+  @media (min-width: 1536px) {
+    font-size: 2rem;
+  }
+}
+
+.name {
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fbbf24;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.5rem;
+  }
+
+  // ছোট মোবাইলের জন্য
+  @media (min-width: 1536px) {
+    font-size: 5.5rem;
+  }
+
+  // Big Screen
+}
+
+.headline {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+
+  @media (min-width: 1536px) {
+    font-size: 2rem;
+  }
+}
+
+.description {
+  color: #9ca3af;
+  font-size: 1.1rem;
+  max-width: 500px;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+
+  @media (min-width: 1536px) {
+    font-size: 1.4rem;
+    max-width: 700px;
+  }
+}
+
+// বাটন স্টাইল
+.hireBtn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  color: #000;
+  font-weight: 700;
+  border-radius: 30px;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.6);
+  }
+
+  @media (min-width: 1536px) {
+    padding: 18px 50px;
+    font-size: 1.2rem;
+  }
+}
+
+.socialWrapper {
+  display: flex;
+  gap: 20px;
+
+  a {
+    color: #9ca3af;
+    font-size: 1.8rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #fbbf24;
+      transform: scale(1.1);
+    }
+
+    @media (min-width: 1536px) {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+// --- RIGHT SIDE VISUALS (FULLY RESPONSIVE) ---
+
+// 🟡 Background Shape (Blob)
+.heroBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  // transform: translate(-50%, -50%); // এটি JSX এ হ্যান্ডেল করা হচ্ছে
+
+  background: #facc15;
+  border-radius: 63% 37% 39% 61% / 46% 54% 46% 54%;
+  z-index: 0;
+  opacity: 0.85;
+
+  // 📱 Mobile (Small)
+  width: 300px;
+  height: 300px;
+
+  // 📱 Mobile (Medium/Large)
+  @media (min-width: 480px) {
+    width: 340px;
+    height: 340px;
+  }
+
+  // 📲 Tablet (iPad/Tabs)
+  @media (min-width: 768px) {
+    width: 400px;
+    height: 400px;
+  }
+
+  // 💻 Desktop (Standard Web)
+  @media (min-width: 1024px) {
+    width: 480px;
+    height: 520px;
+  }
+
+  // 🖥️ Big Screen (4K / Large Monitor)
+  @media (min-width: 1536px) {
+    width: 650px;
+    height: 650px;
+  }
+}
+
+// Image Wrapper
+.imageWrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  width: 100%;
+}
+
+// 🖼️ Hero Image (Responsive Adjustment)
+.heroImg {
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+  transition: height 0.3s ease; // স্মুথ রিসাইজ
+
+  // 📱 Mobile (Default)
+  height: 320px;
+  margin-bottom: 20px;
+
+  // 📱 Mobile Large
+  @media (min-width: 480px) {
+    height: 360px;
+  }
+
+  // 📲 Tablet
+  @media (min-width: 768px) {
+    height: 450px;
+    margin-bottom: 0;
+  }
+
+  // 💻 Desktop (Web)
+  @media (min-width: 1024px) {
+    height: 550px;
+  }
+
+  // 🖥️ Big Screen (Extra Large)
+  @media (min-width: 1536px) {
+    height: 750px; // অনেক বড় স্ক্রিনে ইমেজ বড় হবে
+  }
+}
+
+// 🃏 Floating Cards
+.floatingCard {
+  position: absolute;
+  background: white;
+  padding: 12px 20px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 15px 35px rgba(114, 70, 70, 0.1);
+  z-index: 20;
+  animation: float 4s ease-in-out infinite;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  white-space: nowrap;
+
+  span {
+    font-weight: 700;
+    color: #1f2937;
+    font-size: 0.9rem;
+  }
+
+  // Mobile Styles
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    border-radius: 10px;
+    gap: 8px;
+
+    span {
+      font-size: 0.75rem !important;
+    }
+
+    span:first-child {
+      font-size: 1.2rem !important;
+    }
+  }
+
+  // Big Screen Styles
+  @media (min-width: 1536px) {
+    padding: 16px 25px;
+
+    span {
+      font-size: 1.1rem;
+    }
+
+    span:first-child {
+      font-size: 2rem;
+    }
+  }
+
+  &.card1 {
+    top: 20%;
+    right: 5%;
+    animation-delay: 0s;
+
+    @media (max-width: 768px) {
+      top: 15%;
+      right: 0;
+    }
+
+    // Big Screen Adjustment
+    @media (min-width: 1536px) {
+      right: 10%;
+    }
+  }
+
+  &.card2 {
+    bottom: 20%;
+    left: 5%;
+    animation-delay: 2s;
+
+    @media (max-width: 768px) {
+      bottom: 10%;
+      left: 0;
+    }
+
+    // Big Screen Adjustment
+    @media (min-width: 1536px) {
+      left: 10%;
+    }
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}

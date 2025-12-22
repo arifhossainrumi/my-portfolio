@@ -1,0 +1,150 @@
+.blogSection {
+  padding: 100px 0;
+  background: #ffffff; // সাদা ব্যাকগ্রাউন্ড
+  min-height: 100vh;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3.5rem;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+
+    @media (min-width: 768px) {
+      font-size: 3rem;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #6b7280;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// --- Grid Layout ---
+.gridContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// --- Blog Card ---
+.blogCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); // সফট শ্যাডো
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%; // কার্ডগুলো সমান উচ্চতার হবে
+
+  // হোভার করলে শ্যাডো বাড়বে (Framer Motion হ্যান্ডেল করছে পজিশন)
+  &:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+
+    // ইমেজের ওপর জুম ইফেক্ট
+    .postImage {
+      transform: scale(1.05);
+    }
+  }
+}
+
+// --- Image Area ---
+.imageWrapper {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+
+  .postImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+}
+
+.dateBadge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2563eb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+// --- Content Area ---
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+
+    // টাইটেল ২ লাইনের বেশি হলে ডট দেখাবে
+    display: -webkit-box;
+    -webkit-line-clamp: 2; // পুরনো ব্রাউজারের জন্য
+    line-clamp: 2; // স্ট্যান্ডার্ড প্রপার্টি (নতুন ব্রাউজারের জন্য)
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    flex-grow: 1; // ফুটারকে নিচে ঠেলে দেবে
+  }
+}
+
+// --- Footer / Read More ---
+.cardFooter {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.readMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #2563eb;
+  font-size: 0.95rem;
+  transition: gap 0.3s ease;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  &:hover {
+    gap: 12px; // হোভার করলে তীর একটু সরে যাবে
+    color: #1d4ed8;
+  }
+}

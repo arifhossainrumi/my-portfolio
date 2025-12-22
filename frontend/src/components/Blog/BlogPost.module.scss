@@ -1,0 +1,190 @@
+.postPage {
+  min-height: 100vh;
+  padding: 80px 0 80px; // টপ প্যাডিং যাতে ন্যাভবারের নিচে না ঢাকা পড়ে
+  background: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  color: #374151;
+
+  @media (max-width: 768px) {
+    flex-direction: column; // কলাম হয়ে যাবে
+    padding-top: 60px;
+  }
+
+  // ২. শুধুমাত্র মোবাইলের জন্য (Font/Spacing Fix)
+  @media (max-width: 480px) {
+    padding-top: 80px; // মোবাইলে আরও কম জায়গা
+    padding-bottom: 30px;
+  }
+}
+
+.container {
+  max-width: 800px; // পড়ার জন্য আদর্শ চওড়া
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+// Back Button Style
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 50px;
+  background: #f3f4f6;
+
+  &:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateX(-5px);
+  }
+}
+
+// 1. Title Style
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111827; // Dark almost black
+  line-height: 1.3;
+  margin-bottom: 30px;
+  letter-spacing: -0.02em;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+// 2. Main Image Style
+.heroImageWrapper {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); // Soft deep shadow
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.02); // হালকা জুম ইফেক্ট
+    }
+  }
+}
+
+// 3. Meta Info (Date & Author)
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #e5e7eb; // সেপারেটর লাইন
+  font-size: 0.95rem;
+  color: #6b7280;
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .icon {
+    color: #3b82f6; // ব্র্যান্ড কালার
+  }
+}
+
+// 4. Body Content (Rich Text Typography)
+.contentBody {
+  font-size: 1.125rem; // 18px (পড়ার জন্য বেস্ট)
+  line-height: 1.8;
+  color: #374151;
+
+  // প্যারাগ্রাফ
+  p {
+    margin-bottom: 1.8rem;
+  }
+
+  // হেডিং (আর্টিকেলের ভেতরের)
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  // লিস্ট
+  ul,
+  ol {
+    margin-bottom: 2rem;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.8rem;
+      padding-left: 0.5rem;
+
+      &::marker {
+        color: #3b82f6; // বুলেটের কালার নীল
+      }
+    }
+  }
+
+  // কোটেশন
+  blockquote {
+    border-left: 4px solid #3b82f6;
+    background: #eff6ff;
+    padding: 20px 30px;
+    margin: 2.5rem 0;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #1e3a8a;
+  }
+
+  // কোড ব্লক (যদি থাকে)
+  code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    color: #ef4444;
+    font-size: 0.9em;
+  }
+
+  // লিংক
+  a {
+    color: #2563eb;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: #1e40af;
+    }
+  }
+
+  // বডি ইমেজ
+  .bodyImage {
+    width: 100%;
+    border-radius: 12px;
+    margin: 30px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+}

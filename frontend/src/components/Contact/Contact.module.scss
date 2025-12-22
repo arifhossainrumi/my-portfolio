@@ -1,0 +1,153 @@
+.contactSection {
+  min-height: 100vh;
+  background: #f8fafc; // একটু হালকা কালার
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 100px;
+  padding-bottom: 0;
+
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1f2937;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #6b7280;
+  }
+}
+
+.contentWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1.5fr;
+    align-items: start;
+  }
+}
+
+// Left Side Info
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.infoCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: #ffffff; // সাদা ব্যাকগ্রাউন্ড
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  // transition এখানে সরানো হয়েছে, কারণ Framer Motion হ্যান্ডেল করবে
+  // transition: transform 0.3s;
+
+  &:hover {
+    // transform সরানো হয়েছে, Framer Motion এর সাথে কনফ্লিক্ট এড়াতে
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .iconBox {
+    width: 50px;
+    height: 50px;
+    background: #e0f2fe;
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 4px;
+  }
+
+  p {
+    color: #6b7280;
+    font-size: 0.95rem;
+  }
+}
+
+// Right Side Form
+.formWrapper {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); // শ্যাডো সফট করা হয়েছে
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.inputGroup {
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s;
+
+    &:focus {
+      border-color: #3b82f6;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.sendBtn {
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.3s;
+  font-size: 1rem;
+
+  &:hover {
+    background: #2563eb;
+  }
+
+  &:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+  }
+}

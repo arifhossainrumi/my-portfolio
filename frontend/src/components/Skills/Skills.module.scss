@@ -1,0 +1,276 @@
+.skillsSection {
+  padding-top: 120px;
+  padding-bottom: 60px; // ✅ মোবাইলে কম প্যাডিং (60px)
+  background-color: #f8fafc;
+  min-height: auto; // মোবাইলে 100vh দরকার নেই
+  overflow: hidden;
+
+  // ল্যাপটপ/ডেস্কটপের জন্য প্যাডিং ও হাইট
+  @media (min-width: 1024px) {
+    padding: 100px 0;
+    min-height: 100vh;
+  }
+}
+
+/* Skill Cards (Left Side) */
+.skillCard {
+  background: #ffffff;
+  padding: 20px; // একটু প্যাডিং কমানো হয়েছে যাতে ডানপাশে জায়গা থাকে
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+
+  @media (min-width: 768px) {
+    padding: 25px;
+    border-radius: 20px;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #facc15);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f3f4f6;
+
+  .categoryIcon {
+    width: 50px;
+    height: 50px;
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+}
+
+.skillList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.95rem; // ফন্ট সাইজ একটু কমানো হয়েছে
+    color: #4b5563;
+    font-weight: 500;
+    line-height: 1.5;
+
+    span {
+      transition: color 0.2s;
+    }
+
+    &:hover span {
+      color: #1f2937;
+    }
+  }
+}
+
+.resumeBtn {
+  display: flex;
+  /* inline-flex এর বদলে flex */
+  align-items: center;
+  justify-content: center;
+  background: #1f2937;
+  color: white;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  /* ✅ মোবাইল ভার্সন (ডিফল্ট): পুরো জায়গা নেবে */
+  width: 100%;
+  margin-top: 10px;
+
+  /* ✅ ডেস্কটপ ভার্সন (ল্যাপটপ বা বড় স্ক্রিন): লেখার সমান সাইজ হবে */
+  @media (min-width: 768px) {
+    width: fit-content;
+    display: inline-flex;
+    margin-top: 0;
+  }
+
+  &:hover {
+    background: #3b82f6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  }
+
+  /* মোবাইলে আইকন এবং টেক্সটের মাঝে একটু গ্যাপ ঠিক রাখা */
+  svg {
+    margin-right: 10px;
+  }
+}
+
+/* ✅ RIGHT SIDE: Visuals & Glass Effect */
+.blobBlue {
+  position: absolute;
+  width: 200px; // ছোট সাইজ
+  height: 200px;
+  top: -20px;
+  right: -20px;
+  opacity: 0.1;
+  background: #3b82f6;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  z-index: 0;
+
+  @media (min-width: 768px) {
+    width: 350px;
+    height: 350px;
+    top: -50px;
+    right: -50px;
+  }
+}
+
+.blobYellow {
+  position: absolute;
+  width: 180px; // ছোট সাইজ
+  height: 180px;
+  bottom: -20px;
+  left: -10px;
+  opacity: 0.15;
+  background: #facc15;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  z-index: 0;
+
+  @media (min-width: 768px) {
+    width: 300px;
+    height: 300px;
+    bottom: -50px;
+    left: -20px;
+  }
+}
+
+.visualCard {
+  position: relative;
+  width: 100%;
+  max-width: 400px; // কার্ডের ম্যাক্সিমাম উইথ
+  height: 320px;
+  margin: 0 auto; // সেন্টারে থাকার জন্য
+
+  @media (min-width: 768px) {
+    height: 450px; // ডেস্কটপে বড় হাইট
+  }
+}
+
+.glassEffect {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.6); // গ্লাস ইফেক্ট ব্যাকগ্রাউন্ড
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  svg {
+    transform: scale(0.8);
+  }
+}
+
+/* Floating Icons Position */
+.floatIcon {
+  position: absolute;
+  background: white;
+  width: 55px; // মোবাইলে একটু ছোট
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  z-index: 20;
+
+  @media (min-width: 768px) {
+    width: 65px;
+    height: 65px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.icon1 {
+  top: 10%;
+  left: -10px;
+
+  @media (min-width: 768px) {
+    left: -30px;
+  }
+}
+
+.icon2 {
+  bottom: 10%;
+  right: -10px;
+
+  @media (min-width: 768px) {
+    right: -30px;
+  }
+}
+
+.icon3 {
+  top: -20px;
+  right: 20%;
+}
+
+// Icon 4: Python (Bottom Left)
+.icon4 {
+  bottom: 20%;
+  left: -20px;
+
+  @media (min-width: 768px) {
+    left: -40px;
+    bottom: 25%;
+  }
+}
+
+// Icon 5: Line Chart (Middle Right)
+.icon5 {
+  top: 40%;
+  right: -20px;
+
+  @media (min-width: 768px) {
+    right: -45px;
+    top: 35%;
+  }
+}

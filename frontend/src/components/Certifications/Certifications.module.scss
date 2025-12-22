@@ -1,0 +1,180 @@
+.certPage {
+    min-height: 100vh;
+    padding: 40px 0;
+    background: #ffffff; // হালকা গ্রে ব্যাকগ্রাউন্ড
+
+    @media (max-width: 768px) {
+        flex-direction: column; // কলাম হয়ে যাবে
+        padding-top: 60px;
+    }
+
+    // ২. শুধুমাত্র মোবাইলের জন্য (Font/Spacing Fix)
+    @media (max-width: 480px) {
+        padding-top: 20px; // মোবাইলে আরও কম জায়গা
+        padding-bottom: 30px;
+    }
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media (min-width: 640px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+        grid-template-columns: repeat(3, 1fr); // বড় স্ক্রিনে ৩টি করে
+    }
+}
+
+.backBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280;
+    font-weight: 500;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: #f3f4f6;
+
+    &:hover {
+        background: #3b82f6;
+        color: white;
+        transform: translateX(-5px);
+    }
+}
+
+.certCard {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.imageWrapper {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* ইমেজ কেটে যাবে না, পুরোটা দেখাবে */
+        padding: 20px;
+        transition: transform 0.5s ease;
+    }
+
+    /* কার্ডে হোভার করলে ইমেজ একটু জুম হবে */
+    .certCard:hover & img {
+        transform: scale(1.05);
+    }
+}
+
+.content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    /* বাটনকে নিচে ঠেলে দেবে */
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+    }
+
+    .provider {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #2563eb;
+        /* Blue Color */
+        margin-bottom: 0.25rem;
+    }
+
+    .date {
+        font-size: 0.875rem;
+        color: #9ca3af;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.verifyBtn {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    /* Spacing & Shape */
+    padding: 10px 16px;
+    border-radius: 8px;
+    /* Smooth corners */
+
+    /* Typography */
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    /* Default Colors (Soft Style) */
+    color: #2563eb;
+    /* Blue Text */
+    background-color: #eff6ff;
+    /* Very Light Blue Background */
+    border: 1px solid transparent;
+
+    /* Smooth Transition */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Icon Animation Target */
+    svg {
+        transition: transform 0.3s ease;
+    }
+
+    /* Hover Effects */
+    &:hover {
+        background-color: #2563eb;
+        /* Solid Blue on Hover */
+        color: #ffffff;
+        /* White Text */
+        transform: translateY(-2px);
+        /* Slight Lift */
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        /* Soft Shadow */
+
+        /* Icon moves up-right */
+        svg {
+            transform: translate(2px, -2px);
+        }
+    }
+
+    /* Active/Click Effect */
+    &:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    @media (max-width: 640px) {
+        width: 100%;
+        /* মোবাইলে বাটন পুরো চওড়া হবে */
+        padding: 12px;
+        /* টাচ এরিয়া বড় হবে */
+    }
+}

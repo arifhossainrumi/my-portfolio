@@ -1,0 +1,67 @@
+.footer {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 40px 0;
+  font-family: 'Poppins', sans-serif;
+  border-top: 1px solid #1f2937;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+
+  // ✅ নতুন যোগ করা হয়েছে: কন্টেইনার ফিক্স
+  width: 90%; // মোবাইলে দুই পাশে একটু জায়গা থাকবে
+  max-width: 1200px; // বড় স্ক্রিনে ১২০০ পিক্সেলের বেশি ছড়াবে না
+  margin: 0 auto; // স্ক্রিনের মাঝখানে থাকবে
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    width: 100%; // বড় স্ক্রিনে কন্টেইনারের পুরোটা নেবে (max-width এর ভেতরে)
+    padding: 0 20px; // সেফটি প্যাডিং
+  }
+}
+
+.logoname {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #e5e7eb;
+
+  span {
+    color: #0e65f0;
+  }
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+.socials {
+  display: flex;
+  gap: 15px; // মোবাইলে গ্যাপ একটু কমানো ভালো
+
+  a {
+    color: #e5e7eb;
+    font-size: 1.2rem; // আইকন সাইজ
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      color: #3b82f6;
+      background: rgba(59, 130, 246, 0.1);
+      transform: translateY(-3px);
+    }
+  }
+}

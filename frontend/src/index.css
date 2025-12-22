@@ -1,0 +1,56 @@
+/* 1. Import a nice font (Poppins is great for portfolios) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text-primary: #1f2937;
+  --bg: #ffffff;
+  --accent: #3b82f6;
+  color-scheme: light;
+  ;
+}
+
+.dark {
+  --text-primary: #f3f4f6;
+  --bg: #111827;
+  --accent: #60a5fa;
+}
+
+/* 2. Global Body Styles */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  /* Apply the font */
+  background-color: #ffffff;
+  color: #1f2937;
+
+
+  /* CRITICAL for Framer Motion: Prevents horizontal scrollbars during animations */
+  overflow-x: hidden;
+  width: 100%;
+}
+
+html {
+  scroll-behavior: auto !important;
+}
+
+/* Optional: Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
