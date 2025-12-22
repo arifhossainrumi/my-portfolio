@@ -56,7 +56,7 @@ function Blog() {
           transition={{ duration: 0.6 }}
         >
           <h2>Latest <span className="text-blue-600">Insights</span></h2>
-          <p>Exploring the world of technology, coding, and design.</p>
+          <p>Exploring SQL, data analysis techniques, and BI tools for data-driven decisions.</p>
 
           {/* ✅ ৩. নেভিগেশন বাটন (হেডারের নিচে বা পাশে রাখা যেতে পারে) */}
           {!loading && posts.length > 0 && (
