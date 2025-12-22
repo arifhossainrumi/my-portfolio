@@ -1,22 +1,19 @@
 .blogSection {
-  padding: 100px 0;
-  background: #ffffff; // সাদা ব্যাকগ্রাউন্ড
-  min-height: 100vh;
+  padding: 80px 0;
+  background: #ffffff;
+  // min-height সরানো হলো, কারণ স্লাইডার থাকলে হাইট কম হতে পারে
 }
 
 .sectionHeader {
   text-align: center;
-  margin-bottom: 3.5rem;
+  margin-bottom: 2.5rem;
+  position: relative; // বাটনের জন্য
 
   h2 {
     font-size: 2.5rem;
     font-weight: 800;
     color: #1f2937;
     margin-bottom: 0.5rem;
-
-    @media (min-width: 768px) {
-      font-size: 3rem;
-    }
   }
 
   p {
@@ -27,47 +24,95 @@
   }
 }
 
-// --- Grid Layout ---
-.gridContainer {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+// ✅ ১. নেভিগেশন বাটন স্টাইল (গোল বাটন)
+.navButtons {
+  display: flex;
+  justify-content: center; // সেন্টারে থাকবে, চাইলে 'flex-end' দিতে পারেন ডানে রাখার জন্য
+  gap: 15px;
+  margin-top: 20px;
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; // গোল শেপ
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 
-  @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
+    &:hover {
+      background: #2563eb; // নীল ব্যাকগ্রাউন্ড
+      color: white;
+      border-color: #2563eb;
+      transform: scale(1.1); // একটু বড় হবে
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
 }
 
-// --- Blog Card ---
+// ✅ ২. স্লাইডার কন্টেইনার (Grid এর বদলে Flex)
+.sliderContainer {
+  display: flex;
+  gap: 20px; // কার্ডের মাঝখানের গ্যাপ
+  overflow-x: auto; // হরিজন্টাল স্ক্রল অন
+  padding: 20px 5px; // শ্যাডোর জন্য প্যাডিং
+  scroll-behavior: smooth; // স্মুথ স্ক্রল
+
+  // স্ক্রল স্ন্যাপ (Scroll Snap) - যাতে কার্ডগুলো সুন্দরভাবে থামে
+  scroll-snap-type: x mandatory;
+
+  // ডিফল্ট স্ক্রলবার লুকানো (Optional)
+  scrollbar-width: none; // Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome/Safari
+  }
+}
+
+// ✅ ৩. ব্লগ কার্ড (ফিক্সড উইডথ)
 .blogCard {
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); // সফট শ্যাডো
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  height: 100%; // কার্ডগুলো সমান উচ্চতার হবে
 
-  // হোভার করলে শ্যাডো বাড়বে (Framer Motion হ্যান্ডেল করছে পজিশন)
+  // ফ্লেক্স চাইল্ড হিসেবে আচরণ
+  flex: 0 0 auto;
+
+  // কার্ডের সাইজ (মোবাইলে একটু ছোট, পিসিতে একটু বড়)
+  width: 300px;
+
+  @media (min-width: 768px) {
+    width: 350px;
+  }
+
+  // স্ক্রল স্ন্যাপ পজিশন
+  scroll-snap-align: center;
+
   &:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 
-    // ইমেজের ওপর জুম ইফেক্ট
     .postImage {
       transform: scale(1.05);
     }
   }
 }
 
-// --- Image Area ---
+// --- Image Area (আগের মতোই) ---
 .imageWrapper {
   position: relative;
-  height: 240px;
+  height: 200px; // হাইট একটু কমানো হয়েছে স্লাইডারের জন্য
   overflow: hidden;
 
   .postImage {
@@ -82,13 +127,13 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px 10px;
   border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: #2563eb;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 // --- Content Area ---
@@ -96,33 +141,32 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1; // সমান হাইট রাখার জন্য
 
   h3 {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: #1f2937;
     margin-bottom: 0.8rem;
     line-height: 1.4;
 
-    // টাইটেল ২ লাইনের বেশি হলে ডট দেখাবে
     display: -webkit-box;
-    -webkit-line-clamp: 2; // পুরনো ব্রাউজারের জন্য
-    line-clamp: 2; // স্ট্যান্ডার্ড প্রপার্টি (নতুন ব্রাউজারের জন্য)
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #6b7280;
     margin-bottom: 1.5rem;
     line-height: 1.6;
-    flex-grow: 1; // ফুটারকে নিচে ঠেলে দেবে
+    flex-grow: 1;
   }
 }
 
-// --- Footer / Read More ---
+// --- Footer ---
 .cardFooter {
   margin-top: auto;
   padding-top: 1rem;
@@ -135,7 +179,7 @@
   gap: 8px;
   font-weight: 600;
   color: #2563eb;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: gap 0.3s ease;
 
   span {
@@ -144,7 +188,7 @@
   }
 
   &:hover {
-    gap: 12px; // হোভার করলে তীর একটু সরে যাবে
+    gap: 12px;
     color: #1d4ed8;
   }
 }

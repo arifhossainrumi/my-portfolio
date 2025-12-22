@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaChartBar } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaChartBar, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { client, urlFor } from '../../lib/sanityClient';
 import styles from './Projects.module.scss';
 
@@ -8,8 +8,10 @@ function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // ✅ ১. স্লাইডার কন্ট্রোল করার জন্য Ref
+  const sliderRef = useRef(null);
+
   useEffect(() => {
-    // আপনার স্কিমা অনুযায়ী ডেটা আনা হচ্ছে
     const query = '*[_type == "project"] | order(_createdAt desc) { _id, title, mainImage, description, projectLink, githubLink, dashboardLink, tags, toolsUsed }';
 
     client.fetch(query)
@@ -23,47 +25,67 @@ function Projects() {
       });
   }, []);
 
+  // ✅ ২. বাটন দিয়ে স্ক্রল করার ফাংশন
+  const scroll = (direction) => {
+    const { current } = sliderRef;
+    if (current) {
+      // কার্ডের সাইজ অনুযায়ী ডানে বা বামে সরবে
+      const scrollAmount = direction === 'left' ? -350 : 350;
+      current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   if (loading) return null;
 
   return (
     <section id="projects" className={styles.projectsSection}>
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container mx-auto px-6 md:px-12 relative">
 
-        {/* ✅ ১. হেডার এনিমেশন (আলাদাভাবে) */}
+        {/* ✅ ৩. হেডার + নেভিগেশন বাটন */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 relative"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false }} // স্ক্রল করলে বারবার দেখাবে
+          viewport={{ once: false }}
         >
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Featured <span className="text-blue-600">Projects</span>
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-2xl mx-auto text-lg mb-6">
             Check out some of the top projects I've worked on.
           </p>
+
+          {/* নেভিগেশন বাটন (ব্লগের মতো) */}
+          {projects.length > 0 && (
+            <div className={styles.navButtons}>
+              <button onClick={() => scroll('left')} aria-label="Scroll Left">
+                <FaChevronLeft />
+              </button>
+              <button onClick={() => scroll('right')} aria-label="Scroll Right">
+                <FaChevronRight />
+              </button>
+            </div>
+          )}
         </motion.div>
 
-        {/* ✅ ২. গ্রিড কন্টেইনার (সিম্পল রাখা হয়েছে) */}
-        <div className={styles.gridContainer}>
+        {/* ✅ ৪. হরিজন্টাল স্লাইডার কন্টেইনার */}
+        <div className={styles.sliderContainer} ref={sliderRef}>
           {projects.map((project, index) => (
             <motion.div
               key={project._id}
               className={styles.projectCard}
 
-              // ✅ প্রতিটি কার্ডের নিজস্ব এনিমেশন (Index দিয়ে ডিলে করা হয়েছে)
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.1 }} // ১০% দেখা গেলেই এনিমেশন হবে
+              // এনিমেশন সিম্পল রাখা হলো স্ক্রলিং ইস্যু এড়াতে
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{
                 duration: 0.5,
-                delay: index * 0.2, // একটার পর একটা আসবে (Stagger Effect)
+                delay: index * 0.1,
                 ease: "easeOut"
               }}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
-
               {/* Image Area */}
               <div className={styles.imageWrapper}>
                 {project.mainImage ? (

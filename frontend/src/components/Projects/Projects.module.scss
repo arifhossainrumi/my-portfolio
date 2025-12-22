@@ -1,28 +1,63 @@
 .projectsSection {
-  min-height: 100vh;
-  padding: 100px 0;
-  background: #f8fafc; // একটু ক্লিন এবং মডার্ন কালার
-  display: flex;
-  align-items: center;
-  // ডট প্যাটার্নটি হালকা করা হয়েছে যাতে কার্ডগুলো ফোকাসে থাকে
+  padding: 80px 0;
+  background: #f8fafc;
+  // min-height সরানো হলো
   background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
   background-size: 30px 30px;
 }
 
-.gridContainer {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
+// ✅ ১. নেভিগেশন বাটন স্টাইল (ব্লগের মতো সেম লজিক)
+.navButtons {
+  display: flex;
+  justify-content: center; // সেন্টারে থাকবে, চাইলে 'flex-end' দিতে পারেন ডানে রাখার জন্য
+  gap: 15px;
+  margin-top: 20px;
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; // গোল শেপ
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 
-  @media (min-width: 1200px) {
-    grid-template-columns: repeat(3, 1fr);
+    &:hover {
+      background: #2563eb; // নীল ব্যাকগ্রাউন্ড
+      color: white;
+      border-color: #2563eb;
+      transform: scale(1.1); // একটু বড় হবে
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
   }
 }
 
+// ✅ ২. স্লাইডার কন্টেইনার (Grid রিপ্লেস করা হয়েছে)
+.sliderContainer {
+  display: flex;
+  gap: 25px; // কার্ডের গ্যাপ
+  overflow-x: auto; // হরিজন্টাল স্ক্রল
+  padding: 20px 5px;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory; // স্ক্রল স্ন্যাপ
+
+  // স্ক্রলবার লুকানো
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// ✅ ৩. প্রজেক্ট কার্ড (ফিক্সড উইডথ)
 .projectCard {
   background: #ffffff;
   border-radius: 16px;
@@ -31,9 +66,18 @@
   border: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  height: 100%; // কার্ডগুলো যাতে সমান উচ্চতার হয়
-  // Framer Motion এর সাথে transition কনফ্লিক্ট এড়ানোর জন্য এটি সরানো হলো
-  // transition: box-shadow 0.3s ease; 
+
+  // ফ্লেক্স চাইল্ড সেটিংস
+  flex: 0 0 auto;
+
+  // কার্ড উইডথ (ব্লগের চেয়ে একটু বড় রাখা হলো ডিটেইলসের জন্য)
+  width: 310px;
+
+  @media (min-width: 768px) {
+    width: 380px; // ডেস্কটপে আরেকটু চওড়া
+  }
+
+  scroll-snap-align: center; // সেন্টারে থামবে
 
   &:hover {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
@@ -44,7 +88,7 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  height: 250px; // হাইট ফিক্স করা হয়েছে যাতে সব ইমেজ সমান দেখায়
+  height: 220px; // হাইট সামান্য কমানো হলো ব্যালেন্সের জন্য
   overflow: hidden;
   background: #f3f4f6;
   border-bottom: 1px solid #f0f0f0;
@@ -52,7 +96,7 @@
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover; // ইমেজ ক্রপ হয়ে ফিট হবে
+    object-fit: cover;
     transition: transform 0.5s ease;
   }
 
@@ -84,7 +128,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(2px); // হালকা ব্লার ইফেক্ট
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,13 +165,20 @@
 // --- Content Section ---
 .cardContent {
   padding: 1.5rem;
-  flex: 1;
+  flex: 1; // কার্ডের হাইট সমান রাখতে সাহায্য করবে
   display: flex;
   flex-direction: column;
 
   h3 {
-    font-size: 1.5rem; // টাইটেল সাইজ
+    font-size: 1.4rem;
     line-height: 1.3;
+
+    // টাইটেল ২ লাইনের বেশি হলে ডট দেখাবে
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
@@ -135,17 +186,17 @@
   margin-top: auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .tagBadge {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 20px;
   background: #eff6ff;
   color: #2563eb;
-  border: 1px solid #dbeafe; // হালকা বর্ডার
+  border: 1px solid #dbeafe;
 
   &.secondaryTag {
     background: #f3f4f6;
