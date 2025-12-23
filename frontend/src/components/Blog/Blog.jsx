@@ -50,10 +50,10 @@ function Blog() {
 
         <motion.div
           className={styles.sectionHeader}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h2>Latest <span className="text-blue-600">Insights</span></h2>
           <p>Exploring SQL, data analysis techniques, and BI tools for data-driven decisions.</p>

@@ -1,5 +1,5 @@
 .contactSection {
-  min-height: 100vh;
+  // min-height: 100vh;
   background: #f8fafc; // একটু হালকা কালার
   position: relative;
   overflow: hidden;
@@ -8,6 +8,13 @@
   justify-content: space-between;
   padding-top: 100px;
   padding-bottom: 0;
+
+  @media (min-width: 1024px) {
+    min-height: 100vh; // পুরো স্ক্রিন জুড়ে থাকবে
+    display: flex;
+    flex-direction: column;
+
+  }
 
 }
 

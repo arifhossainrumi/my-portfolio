@@ -2,6 +2,13 @@
   padding: 80px 0;
   background: #ffffff;
   // min-height সরানো হলো, কারণ স্লাইডার থাকলে হাইট কম হতে পারে
+
+  @media (min-width: 1024px) {
+    min-height: 100vh; // পুরো স্ক্রিন জুড়ে থাকবে
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // কন্টেন্ট মাঝখানে রাখবে
+  }
 }
 
 .sectionHeader {
