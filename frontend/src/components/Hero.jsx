@@ -135,7 +135,7 @@ function Hero() {
           >
             {about.heroImage ? (
               <img
-                src={urlFor(about.heroImage).width(800).url()}
+                src={urlFor(about.heroImage).width(800).format('webp').url()}
                 alt={about.name}
                 className={styles.heroImg}
                 loading="eager"        // লেজি লোড বন্ধ করে দ্রুত লোড করবে

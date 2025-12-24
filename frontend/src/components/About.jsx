@@ -38,7 +38,7 @@ function About() {
           >
             {about.profileImage && (
               <img
-                src={urlFor(about.profileImage).width(600).url()}
+                src={urlFor(about.profileImage).width(600).format('webp').url()}
                 alt={about.name || "Profile"}
                 className={styles.profileImg}
               />
