@@ -138,6 +138,9 @@ function Hero() {
                 src={urlFor(about.heroImage).width(800).url()}
                 alt={about.name}
                 className={styles.heroImg}
+                loading="eager"        // লেজি লোড বন্ধ করে দ্রুত লোড করবে
+                fetchPriority="high"   // ব্রাউজারকে বলবে এটি সবচেয়ে জরুরি ছবি
+                decoding="async"
               />
             ) : (
               <div className="w-[300px] h-[400px] bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
