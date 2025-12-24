@@ -1,6 +1,8 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
+// ✅ ১. Vercel Analytics ইম্পোর্ট করা হলো
+import { Analytics } from '@vercel/analytics/react';
 
 // Components
 import Navbar from './components/Navbar/Navbar';
@@ -122,6 +124,9 @@ function App() {
               <Route path="/blog/:slug" element={<BlogPost />} />
             </Routes>
           </main>
+
+          {/* ✅ ২. Analytics কম্পোনেন্ট এখানে যুক্ত করা হলো */}
+          <Analytics />
         </>
       )}
     </>
