@@ -32,7 +32,7 @@ function Preloader() {
             className="h-full bg-blue-600"
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
-            transition={{ duration: 1.0, ease: "easeInOut" }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
           />
         </div>
       </div>
