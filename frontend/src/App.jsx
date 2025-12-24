@@ -1,8 +1,10 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-// ✅ ১. Vercel Analytics ইম্পোর্ট করা হলো
+
+// ✅ ১. Vercel Analytics এবং SpeedInsights ইম্পোর্ট করা হলো
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 // Components
 import Navbar from './components/Navbar/Navbar';
@@ -125,8 +127,9 @@ function App() {
             </Routes>
           </main>
 
-          {/* ✅ ২. Analytics কম্পোনেন্ট এখানে যুক্ত করা হলো */}
+          {/* ✅ ২. Analytics এবং SpeedInsights কম্পোনেন্ট এখানে যুক্ত করা হলো */}
           <Analytics />
+          <SpeedInsights />
         </>
       )}
     </>
